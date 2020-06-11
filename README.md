@@ -16,7 +16,7 @@ $ npm install
 ```
 Es importante señalar que la aplicación esta creada usando el framework VueJS por lo que es necesario tener instalados, de manera global en el equipo donde se desea correr el proyecto, los componentes básicos como el core Vue y el VueCLI. Documentación <a href="https://es.vuejs.org/v2/guide/installation.html" target="_blank">Vue</a> y <a href="https://cli.vuejs.org/" target="_blank">VueCLI</a>
 
-## Detalle de dependencias especificas.
+## Detalle de dependencias específicas.
 Utilicé un <a href="https://www.creative-tim.com/product/vue-material-dashboard" target="_blank">Template</a> de VueJS y Material Design que he usado para hacer pruebas y cursos por mi cuenta, y aprovechar los componentes y estilos que este ofrece. 
 Este template ya posee sus dependencias internas que ofrecen componentes como la tarjeta usada para presentar los datos de los juegos, las animaciones y efectos visuales, el manejo de grillas y el diseño responsive. Por esto es recomendable utilizar el comando anterior.
 
