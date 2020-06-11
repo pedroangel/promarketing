@@ -2,10 +2,8 @@
   <div class="content">
     <div class="md-layout">
       <div
-        v-for="color in Colores"
-        :key="color.id"
-        v-clipboard="color.color"
-        v-clipboard:success="clipboardSuccessHandler"
+        v-for="juego in Juegos"
+        :key="juego.id"
         class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-33"
       >
         <div>
@@ -122,52 +120,24 @@ export default {
   components: {},
   data() {
     return {
-      Colores: null,
-      notifications: {
-        topCenter: false
-      },
+      Juegos: null,
       btnSiguiente: false,
       btnAnterior: true
     };
   },
   mounted() {
-    this.listadoColores("1");
+    this.listadoJuegos();
   },
   methods: {
-    listadoColores(page) {
-      axios.get("https://reqres.in/api/colors?page=" + page).then(response => {
-        this.Colores = response.data.data;
-      });
-    },
-    clipboardSuccessHandler({ value, event }) {
-      this.notifyVue("top", "center", value);
-    },
-    notifyVue(verticalAlign, horizontalAlign, colorCopiado) {
-      this.$notify({
-        message:
-          "Código de color: <label style='color: " +
-          colorCopiado +
-          "; text-shadow: 1px 1px #727272'>" +
-          colorCopiado +
-          "</label> ha sido copiado en tu portapapeles!",
-        icon: "color_lens",
-        horizontalAlign: horizontalAlign,
-        verticalAlign: verticalAlign,
-        type: "success"
-      });
-    },
-    hexToRGBA(hex, opacity) {
-      return (
-        "rgba(" +
-        (hex = hex.replace("#", ""))
-          .match(new RegExp("(.{" + hex.length / 3 + "})", "g"))
-          .map(function(l) {
-            return parseInt(hex.length % 2 ? l + l : l, 16);
-          })
-          .concat(opacity || 1)
-          .join(",") +
-        ")"
-      );
+    listadoJuegos() {
+      axios
+        .get("https://promarketingchile.com/games.json")
+        .then(response => {
+          this.Juegos = response.data.data;
+        })
+        .catch(err => {
+          console.log("Error: ", err);
+        });
     }
   }
 };
