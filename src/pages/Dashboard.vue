@@ -136,7 +136,7 @@ export default {
           this.Juegos = response.data.data;
         })
         .catch(err => {
-          console.log("Error: ", err);
+          window.console.log("Error: ", err);
         });
     }
   }
