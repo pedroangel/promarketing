@@ -52,63 +52,6 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-.card-footer {
-  min-height: unset !important;
-}
-.md-dialog {
-  min-width: 95%;
-}
-.vue-friendly-iframe {
-  width: 100%;
-}
-iframe {
-  width: 100%;
-  height: 65vh !important;
-}
-.PanelPaginas {
-  position: relative;
-  width: 97%;
-  height: 65px;
-  margin: 0 auto;
-}
-.btn-siguiente {
-  position: absolute;
-  right: 0;
-}
-.btn-anterior {
-  position: absolute;
-  left: 0;
-}
-.md-card-content {
-  text-align: center;
-  font-size: 16px;
-  font-style: italic;
-  font-weight: 800;
-  text-shadow: 1px 1px rgb(32, 32, 32, 0.4);
-}
-.md-card {
-  width: 100%;
-  margin: 15px auto;
-  display: inline-block;
-  vertical-align: top;
-}
-.md-title {
-  font-family: "Bookman";
-  font-weight: 400;
-}
-.md-ripple {
-  padding: 5px;
-}
-.md-subhead {
-  text-transform: capitalize;
-  color: white;
-  font-family: "Bookman";
-  font-weight: 800;
-  font-size: 17px !important;
-}
-</style>
-
 <script>
 import juegos from "../assets/juegos.json";
 
