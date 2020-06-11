@@ -13,6 +13,9 @@ import Notifications from "./components/NotificationPlugin";
 // MaterialDashboard plugin
 import MaterialDashboard from "./material-dashboard";
 
+// Meta Plugins
+import VueMeta from "vue-meta";
+
 // configure router
 const router = new VueRouter({
   mode: "history",
@@ -25,6 +28,7 @@ Vue.use(MaterialDashboard);
 Vue.use(GlobalComponents);
 Vue.use(GlobalDirectives);
 Vue.use(Notifications);
+Vue.use(VueMeta);
 
 /* eslint-disable no-new */
 /* eslint-disable */

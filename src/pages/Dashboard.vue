@@ -14,7 +14,6 @@
                 :title="juego.image.title"
                 :alt="juego.image.alt"
               />
-              <!-- <div class="md-title">{{ juego.name }}</div> -->
             </md-card-header>
 
             <md-card-content>
@@ -24,10 +23,10 @@
             <md-card-actions>
               <span>{{ juego.image.alt }}</span>
             </md-card-actions>
-            <md-card-actions>
+            <md-card-actions class="card-footer">
               <md-button
-                class="md-primary md-raised"
-                @click="abrirDemo(juego.url)"
+                class="md-success md-raised"
+                @click="abrirDemo(juego.url, juego.name)"
               >
                 Demo
               </md-button>
@@ -37,14 +36,14 @@
       </div>
 
       <md-dialog :md-active.sync="showDialog">
-        <md-dialog-title>Preferences</md-dialog-title>
+        <md-dialog-title>{{ nombreJuegoDemo }}</md-dialog-title>
 
         <div class="video-container">
           <iframe :src="urlFrame" frameborder="0" allowfullscreen></iframe>
         </div>
 
         <md-dialog-actions>
-          <md-button class="md-primary" @click="cerrarDemo()">
+          <md-button class="md-danger" @click="cerrarDemo()">
             Cerrar
           </md-button>
         </md-dialog-actions>
@@ -54,6 +53,9 @@
 </template>
 
 <style lang="scss" scoped>
+.card-footer {
+  min-height: unset !important;
+}
 .md-dialog {
   min-width: 95%;
 }
@@ -116,18 +118,45 @@ export default {
     return {
       Juegos: juegos.games[0],
       showDialog: false,
-      urlFrame: ""
+      urlFrame: "",
+      nombreJuegoDemo: ""
     };
   },
   methods: {
-    abrirDemo(url) {
+    abrirDemo(url, nombre) {
       this.urlFrame = url;
       this.showDialog = true;
+      this.nombreJuegoDemo = nombre;
     },
     cerrarDemo() {
       this.showDialog = false;
       this.urlFrame = "";
     }
+  },
+  metaInfo: {
+    title: "Promarketing Chile",
+    titleTemplate: "%s: Prueba Técnica",
+    meta: [
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        name: "description",
+        content:
+          "SPA que contiene la prueba técnica para el proceso de seleccion al cargo de programador Front End."
+      },
+      {
+        name: "keywords",
+        content:
+          "promarketing, Promarketing chile, Promarketing-chile, prueba técnica, postulación, frontend"
+      },
+      {
+        name: "author",
+        content: "Ing. Pedro Alarcon"
+      },
+      {
+        name: "robots",
+        content: "index"
+      }
+    ]
   }
 };
 </script>
