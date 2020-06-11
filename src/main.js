@@ -10,6 +10,8 @@ import GlobalComponents from "./globalComponents";
 import GlobalDirectives from "./globalDirectives";
 import Notifications from "./components/NotificationPlugin";
 
+import VueFriendlyIframe from "vue-friendly-iframe";
+
 // MaterialDashboard plugin
 import MaterialDashboard from "./material-dashboard";
 
@@ -25,9 +27,8 @@ Vue.use(MaterialDashboard);
 Vue.use(GlobalComponents);
 Vue.use(GlobalDirectives);
 Vue.use(Notifications);
-import Clipboard from "v-clipboard";
+Vue.use(VueFriendlyIframe);
 
-Vue.use(Clipboard);
 /* eslint-disable no-new */
 /* eslint-disable */
 new Vue({

@@ -3,6 +3,16 @@ body {
   letter-spacing: unset;
   // background: #fdfdfe;
   color: $black-color;
+  &::after{
+    content: " ";
+    background: url("../img/retro-games.jpg");
+    opacity: 0.08;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+  }
   &.inverse {
     background: #333333;
     &, .form-control {
@@ -24,10 +34,12 @@ body {
 .wrapper{
     max-width: 1475px !important;
     margin: 0 auto;
+    
     &.wrapper-full-page{
         height: auto;
         min-height: 100vh;
     }
+    
 }
 
 

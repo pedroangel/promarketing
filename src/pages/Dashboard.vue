@@ -2,74 +2,68 @@
   <div class="content">
     <div class="md-layout">
       <div
-        v-for="juego in Juegos"
-        :key="juego.id"
+        v-for="(juego, index) in Juegos"
+        :key="index"
         class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-33"
       >
         <div>
-          <md-card
-            md-with-hover
-            :style="{ background: hexToRGBA(color.color, 0.1) }"
-          >
-            <md-ripple>
-              <md-card-header
-                :style="{ backgroundColor: color.color, textAlign: 'center' }"
-              >
-                <div class="md-title">{{ color.color }}</div>
-                <div class="md-subhead">{{ color.name }}</div>
-              </md-card-header>
+          <md-card md-with-hover>
+            <md-card-header>
+              <img
+                v-bind:src="juego.image.url_image"
+                :title="juego.image.title"
+                :alt="juego.image.alt"
+              />
+              <!-- <div class="md-title">{{ juego.name }}</div> -->
+            </md-card-header>
 
-              <md-card-content :style="{ color: hexToRGBA(color.color, 0.6) }">
-                <span>{{ color.pantone_value }}</span>
-              </md-card-content>
+            <md-card-content>
+              <span>{{ juego.name }}</span>
+            </md-card-content>
 
-              <md-card-actions
-                :style="{ borderTop: '1px solid ' + color.color }"
+            <md-card-actions>
+              <span>{{ juego.image.alt }}</span>
+            </md-card-actions>
+            <md-card-actions>
+              <md-button
+                class="md-primary md-raised"
+                @click="abrirDemo(juego.url)"
               >
-                <span
-                  :style="{
-                    fontWeight: 800,
-                    color: hexToRGBA(color.color, 0.4)
-                  }"
-                  >{{ color.year }}</span
-                >
-              </md-card-actions>
-            </md-ripple>
+                Demo
+              </md-button>
+            </md-card-actions>
           </md-card>
         </div>
       </div>
 
-      <md-card-actions class="PanelPaginas">
-        <md-button
-          :disabled="btnAnterior"
-          @click="
-            () => {
-              listadoColores('1');
-              btnAnterior = !btnAnterior;
-              btnSiguiente = !btnSiguiente;
-            }
-          "
-          class="btn-anterior"
-          >Anterior</md-button
-        >
-        <md-button
-          :disabled="btnSiguiente"
-          @click="
-            () => {
-              listadoColores('2');
-              btnSiguiente = !btnSiguiente;
-              btnAnterior = !btnAnterior;
-            }
-          "
-          class="btn-siguiente"
-          >Siguiente</md-button
-        >
-      </md-card-actions>
+      <md-dialog :md-active.sync="showDialog">
+        <md-dialog-title>Preferences</md-dialog-title>
+
+        <div class="video-container">
+          <iframe :src="urlFrame" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <md-dialog-actions>
+          <md-button class="md-primary" @click="cerrarDemo()">
+            Cerrar
+          </md-button>
+        </md-dialog-actions>
+      </md-dialog>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.md-dialog {
+  min-width: 95%;
+}
+.vue-friendly-iframe {
+  width: 100%;
+}
+iframe {
+  width: 100%;
+  height: 65vh !important;
+}
 .PanelPaginas {
   position: relative;
   width: 97%;
@@ -114,30 +108,25 @@
 </style>
 
 <script>
-import axios from "axios";
+import juegos from "../assets/juegos.json";
 
 export default {
   components: {},
   data() {
     return {
-      Juegos: null,
-      btnSiguiente: false,
-      btnAnterior: true
+      Juegos: juegos.games[0],
+      showDialog: false,
+      urlFrame: ""
     };
   },
-  mounted() {
-    this.listadoJuegos();
-  },
   methods: {
-    listadoJuegos() {
-      axios
-        .get("https://promarketingchile.com/games.json")
-        .then(response => {
-          this.Juegos = response.data.data;
-        })
-        .catch(err => {
-          window.console.log("Error: ", err);
-        });
+    abrirDemo(url) {
+      this.urlFrame = url;
+      this.showDialog = true;
+    },
+    cerrarDemo() {
+      this.showDialog = false;
+      this.urlFrame = "";
     }
   }
 };
